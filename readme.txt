@@ -2,6 +2,6 @@
 运行方式：./run.sh
 或者 python3 xxx.py 7890 mini_frame:application
 
-author:laowang
-date:xxx
+author:cedarchennn  
+date:2019.3
 versioin:1.0
