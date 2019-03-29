@@ -1,6 +1,4 @@
 import re
-import urllib.parse
-import logging
 from pymysql import connect
 
 """
@@ -31,7 +29,7 @@ def index(ret):
     # my_stock_info = "哈哈哈哈 这是你的本月名称....."
     # content = re.sub(r"\{%content%\}", my_stock_info, content)
     # 创建Connection连接
-    conn = connect(host='localhost',port=3306,user='root',password='mysql',database='stock_db',charset='utf8')
+    conn = connect(host='localhost',port=3306,user='root',password='123456',database='stock_db',charset='utf8')
     # 获得Cursor对象
     cs = conn.cursor()
     cs.execute("select * from info;")
@@ -214,7 +212,6 @@ def save_update_page(ret):
     """"保存修改的信息"""
     stock_code = ret.group(1)
     comment = ret.group(2)
-    comment = urllib.parse.unquote(comment)
     
     conn = connect(host='localhost',port=3306,user='root',password='mysql',database='stock_db',charset='utf8')
     cs = conn.cursor()
@@ -242,13 +239,6 @@ def application(env, start_response):
         return 'Hello World! 我爱你中国....'
     """
 
-    logging.basicConfig(level=logging.INFO,  
-                        filename='./log.txt',  
-                        filemode='a',  
-                        format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s')  
-
-    logging.info("访问的是，%s" % file_name)
-
     try:
         # func = URL_FUNC_DICT[file_name]
         # return func()
@@ -263,7 +253,6 @@ def application(env, start_response):
             if ret:
                 return func(ret)
         else:
-            logging.warning("没有对应的函数....")
             return "请求的url(%s)没有对应的函数...." % file_name
 
 
