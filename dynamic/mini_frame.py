@@ -159,7 +159,7 @@ def del_focus(ret):
     if not cs.fetchone():
         cs.close()
         conn.close()
-        return "没有这支股票，请手下留情..."
+        return "没有这支股票，大哥 ，我们是创业公司，请手下留情..."
 
     # 3. 判断以下是否已经关注过
     sql = """ select * from info as i inner join focus as f on i.id=f.info_id where i.code=%s;"""
